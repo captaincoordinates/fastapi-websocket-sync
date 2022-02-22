@@ -14,3 +14,12 @@ services:
             interval: 5s
             timeout: 2s
             retries: 5
+
+    tsgenerator:
+        build:
+            context: tsgenerator
+        volumes:
+            - ./app:/app
+            - ./tsoutput:/tsoutput
+            - ./tsgenerator:/tsgen
+        command: python -m watch /app/models /tsoutput
