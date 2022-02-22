@@ -1,0 +1,8 @@
+.env
+.vscode/
+.idea/
+.pytest_cache
+.notes
+*.pyc
+__pycache__
+.autoenv*.zsh
