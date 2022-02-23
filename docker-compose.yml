@@ -20,6 +20,6 @@ services:
             context: tsgenerator
         volumes:
             - ./app:/app
-            - ./tsoutput:/tsoutput
+            - ./web/wss/src/app/types/:/tsoutput
             - ./tsgenerator:/tsgen
         command: python -m watch /app/models /tsoutput
