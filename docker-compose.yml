@@ -18,8 +18,11 @@ services:
     tsgenerator:
         build:
             context: tsgenerator
+        environment:
+            PYTHONPATH_APPEND: /src
+            REQUIREMENTS_FILE: /src/requirements.txt
         volumes:
-            - ./app:/app
-            - ./web/wss/src/app/types/:/tsoutput
+            - ./:/src
             - ./tsgenerator:/tsgen
-        command: python -m watch /app/models /tsoutput
+        entrypoint: /entrypoint.sh
+        command: python -m watch /src/app/models /src/web/wss/src/app/types

@@ -13,6 +13,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
 
 RUN npm install -g json-schema-to-typescript@^10.1.5
 
+COPY entrypoint.sh /
+
 WORKDIR /tsgen
 
 COPY watch.py .

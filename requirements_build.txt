@@ -1,5 +1,0 @@
-# the following requirements require a build step on an Alpine base image
-uvicorn==0.13.4
-gunicorn==20.1.0
-uvloop==0.15.2
-httptools==0.2.0

@@ -1,12 +1,31 @@
-import os
+from logging import getLogger
+from os import environ, sched_getaffinity
 
-# From the os package docs discussing os.cpu_count()
-# https://docs.python.org/3/library/os.html#os.cpu_count
-# "This number is not equivalent to the number of CPUs the current process can use.
-# The number of usable CPUs can be obtained with len(os.sched_getaffinity(0))"
-num_avail_cpus = len(os.sched_getaffinity(0))
+logger = getLogger(__file__)
 
-loglevel = os.environ.get("API_LOG_LEVEL", "INFO")
+cpu_core_count = len(sched_getaffinity(0))
+try:
+    cpu_core_limit = min(
+        int(environ.get("CPU_CORE_LIMIT", cpu_core_count)), cpu_core_count
+    )
+    logger.debug(f"cpu_core_limit: {cpu_core_limit}")
+    workers_per_core = float(environ.get("WORKERS_PER_CORE", 1))
+    logger.debug(f"workers_per_core: {workers_per_core}")
+    workers = round(cpu_core_limit * workers_per_core)
+except Exception as e:
+    workers = cpu_core_count
+    logger.error(f"default number of workers ({workers}): {e}")
+
+default_bind_port = 80
+try:
+    bind_port = int(environ.get("BIND_PORT", default_bind_port))
+except Exception:
+    logger.error(f"unable to parse BIND_PORT ({environ['BIND_PORT']})")
+    bind_port = default_bind_port
+
+bind = f"0.0.0.0:{bind_port}"
 worker_class = "uvicorn.workers.UvicornWorker"
-workers = num_avail_cpus
-bind = "0.0.0.0:80"
+
+logger.info(
+    f"gunicorn config workers: {workers}, worker_class: {worker_class}, bind: {bind}"
+)
