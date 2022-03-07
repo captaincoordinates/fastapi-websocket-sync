@@ -20,6 +20,6 @@ logs:
 
 test:
 	# mypy --namespace-packages -p api
-	docker-compose build
+	docker-compose build api
 	docker build -t $(TEST_CONTAINER_IMG) -f api/app/tests/Dockerfile .
 	docker run --rm -v ${PWD}/api/app/tests:/app/tests $(TEST_CONTAINER_IMG)
