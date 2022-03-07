@@ -1,3 +1,3 @@
 #!/bin/sh
 
-mypy --namespace-packages -p app
+mypy --namespace-packages -p api

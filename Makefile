@@ -19,7 +19,7 @@ logs:
 	docker-compose logs --follow api
 
 test:
-	mypy --namespace-packages -p app
+	# mypy --namespace-packages -p api
 	docker-compose build
-	docker build -t $(TEST_CONTAINER_IMG) -f app/tests/Dockerfile .
-	docker run --rm -v ${PWD}/app/tests:/app/tests $(TEST_CONTAINER_IMG)
+	docker build -t $(TEST_CONTAINER_IMG) -f api/app/tests/Dockerfile .
+	docker run --rm -v ${PWD}/api/app/tests:/app/tests $(TEST_CONTAINER_IMG)

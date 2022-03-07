@@ -1,12 +1,11 @@
 from logging import getLogger
 from typing import Final
 
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-
 from app import settings
 from app.middleware.request_context_log_middleware import RequestContextLogMiddleware
 from app.routes import router
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 LOGGER: Final = getLogger(__file__)
 

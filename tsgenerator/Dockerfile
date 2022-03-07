@@ -1,5 +1,6 @@
 FROM python:3.8-slim
 
+RUN python -m pip install --upgrade pip
 RUN pip install pydantic==1.9.0 pydantic-to-typescript==1.0.8 watchdog==2.1.6
 
 RUN apt-get -y update --fix-missing \

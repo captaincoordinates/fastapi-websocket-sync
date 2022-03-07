@@ -1,9 +1,8 @@
 from time import time
 from typing import Optional
 
-from pydantic import BaseModel
-
 from app.models.push_type import PushType
+from pydantic import BaseModel
 
 
 class PushReport(BaseModel):

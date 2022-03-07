@@ -3,14 +3,13 @@ from os import getpid
 from socket import gethostname
 from typing import Final
 
-from fastapi import APIRouter, WebSocket
-from fastapi.encoders import jsonable_encoder
-from starlette.websockets import WebSocketDisconnect
-
 from app import settings
 from app.models.push_report import PushReport
 from app.models.push_type import PushType
 from app.schemas.root_response import RootResponse
+from fastapi import APIRouter, WebSocket
+from fastapi.encoders import jsonable_encoder
+from starlette.websockets import WebSocketDisconnect
 
 PATH: Final = ""
 ROUTER: Final = APIRouter()
@@ -32,16 +31,13 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             await websocket.receive_text()
+            push_report = PushReport(
+                push_type=PushType.NOTIFIED_BY,
+                host=gethostname(),
+                pid=getpid(),
+            )
             for connection in ws_connections:
-                await connection.send_json(
-                    jsonable_encoder(
-                        PushReport(
-                            push_type=PushType.NOTIFIED_BY,
-                            host=gethostname(),
-                            pid=getpid(),
-                        )
-                    )
-                )
+                await connection.send_json(jsonable_encoder(push_report))
     except WebSocketDisconnect:
         ws_connections.remove(websocket)
 

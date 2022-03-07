@@ -1,6 +1,5 @@
-from fastapi import status
-
 from app import settings
+from fastapi import status
 
 
 def test_root_handler(test_app):

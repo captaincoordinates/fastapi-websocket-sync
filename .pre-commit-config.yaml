@@ -12,10 +12,10 @@ repos:
     rev: 3.9.2
     hooks:
     - id: flake8
--   repo: local
-    hooks:
-    # custom hook, rather than mypy hook, gives more control over mypy parameters
-    - id: mypy-executor
-      name: MyPy Executor
-      entry: ./mypy.sh
-      language: system
+# -   repo: local
+#     hooks:
+#     # custom hook, rather than mypy hook, gives more control over mypy parameters
+#     - id: mypy-executor
+#       name: MyPy Executor
+#       entry: ./mypy.sh
+#       language: system

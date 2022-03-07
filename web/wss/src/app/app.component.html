@@ -1,25 +1,7 @@
-<ng-container *ngIf="contentVisible">
+<div class="client-container">
+  <app-wsclient></app-wsclient>
+</div>
 
-  <ng-container *ngIf="connectReport">
-    <div>
-      <h4>WebSocket Connection</h4>
-      <div>Connected to {{ connectReport.host }}</div>
-      <div>Bound to PID {{ connectReport.pid }}</div>
-      <div>Connected at {{ connectReport.report_time }}</div>
-    </div>
-  </ng-container>
-
-  <div class="initiate-button">
-    <button (click)="buttonClicked()">Initiate Push</button>
-  </div>
-
-  <ng-container *ngIf="updateReport">
-    <div>
-      <h4>WebSocket Push</h4>
-      <div>Pushed by {{ updateReport.host }}</div>
-      <div>Pushed by PID {{ updateReport.pid }}</div>
-      <div>Pushed at {{ updateReport.report_time }}</div>
-    </div>
-  </ng-container>
-
-</ng-container>
+<div class="client-container">
+  <app-wsclient></app-wsclient>
+</div>

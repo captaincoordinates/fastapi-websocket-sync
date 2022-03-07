@@ -1,14 +1,14 @@
-version: '3'
+version: '3.8'
 services:
     api:
         build:
-            context: .
-        image: sparkgeo/sample_fastapi_app
+            context: ./api
+        image: sparkgeo/fastapi_websocket_sync
         ports:
             - 8008:80
         volumes:
-            - ./app:/app
-        command: uvicorn --reload --host 0.0.0.0 --port 80 --log-level "info" "app.main:app"
+            - ./api/app:/app
+        # command: uvicorn --reload --host 0.0.0.0 --port 80 --log-level "info" "app.main:app"
         healthcheck:
             test: curl -s --fail http://localhost/ || exit 1
             interval: 5s
@@ -19,10 +19,10 @@ services:
         build:
             context: tsgenerator
         environment:
-            PYTHONPATH_APPEND: /src
-            REQUIREMENTS_FILE: /src/requirements.txt
+            PYTHONPATH_APPEND: /src/api
+            REQUIREMENTS_FILE: /src/api/requirements.txt
         volumes:
             - ./:/src
             - ./tsgenerator:/tsgen
         entrypoint: /entrypoint.sh
-        command: python -m watch /src/app/models /src/web/wss/src/app/types
+        command: python -m watch /src/api/app/models /src/web/wss/src/app/types
