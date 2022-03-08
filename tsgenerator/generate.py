@@ -20,6 +20,7 @@ if __name__ == "__main__":
         type=str,
     )
     args = vars(parser.parse_args())
+    types = {}
     for file_path in [
         filename
         for filename in glob(path.join(args["search_path"], "**", "*.py"), recursive=True)
@@ -46,14 +47,18 @@ if __name__ == "__main__":
                 f"unable to import type class from module '{module_str}': {e}"
             )
 
-        types = [
-            type_class
-            for type_class in module.__dict__.values()
-            if isclass(type_class)
-            and type_class is not BaseModel
-            and issubclass(type_class, BaseModel)
-        ]
+        types = {
+            **types,
+            **{
+                module_str: module_name
+                for type_class in module.__dict__.values()
+                if isclass(type_class)
+                and type_class is not BaseModel
+                and issubclass(type_class, BaseModel)
+            },
+        }
 
+    for module_str, module_name in types.items():
         ts_path = path.join(args["output_path"], f"api_{module_name}.ts")
         print(f"generating TypeScript type for {module_str} to {ts_path}")
         generate_typescript_defs(module_str, ts_path)

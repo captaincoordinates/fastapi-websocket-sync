@@ -21,4 +21,4 @@ ENV WORKERS_PER_CORE=2
 
 WORKDIR /src
 
-CMD ["gunicorn", "-c", "/gunicorn.conf.py", "app.main:app", "--timeout", "185", "--reload"]
+CMD ["gunicorn", "-c", "/gunicorn.conf.py", "app.main:app", "--timeout", "185"]

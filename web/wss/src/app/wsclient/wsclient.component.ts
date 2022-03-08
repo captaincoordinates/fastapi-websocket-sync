@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PushReport } from '../types/api_push_report';
+import { SentMessage } from '../types/api_sent_message';
 
 @Component({
   selector: 'app-wsclient',
@@ -48,7 +49,9 @@ export class WsclientComponent implements OnInit {
   }
 
   public initPushClicked(): void {
-    this.sendMessage("client button clicked")
+    this.sendMessage({
+      sent_message_type: "user-initiated"
+    })
   }
 
   private establishWs(openHandler?: Function): void {
@@ -65,9 +68,9 @@ export class WsclientComponent implements OnInit {
     };
   }
 
-  private sendMessage(message: string): void {
+  private sendMessage(message: SentMessage): void {
     if (this.websocket) {
-      this.websocket.send(message)
+      this.websocket.send(JSON.stringify(message))
     }
   }
 

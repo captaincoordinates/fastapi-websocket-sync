@@ -6,7 +6,8 @@
           <h4>WebSocket Connection <button class=".reconnect-button" (click)="reconnectClicked()">Reconnect Web Socket</button></h4>
           <div>Connected to {{ connectReport.host }}</div>
           <div>Bound to PID <span class="pid-text">{{ connectReport.pid }}</span></div>
-          <div>Connected at {{ connectReport.report_time }}</div>
+          <div>Connected at {{ connectReport.report_time | date : "medium" }}</div>
+          <div>Initiation: {{ connectReport.initiated_by }}</div>
         </div>
       </ng-container>
     
@@ -19,7 +20,8 @@
           <h4>WebSocket Push</h4>
           <div>Pushed by {{ updateReport.host }}</div>
           <div>Pushed by PID <span class="pid-text">{{ updateReport.pid }}</span></div>
-          <div>Pushed at {{ updateReport.report_time }}</div>
+          <div>Pushed at {{ updateReport.report_time | date : "medium" }}</div>
+          <div>Initiation: {{ updateReport.initiated_by }}</div>
         </div>
       </ng-container>
 

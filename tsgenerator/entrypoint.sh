@@ -11,6 +11,7 @@ if [[ -z "$PYTHONPATH_APPEND" ]]; then
     echo "no pythonpath_append to add"
 else
     export PYTHONPATH=$PYTHONPATH:$PYTHONPATH_APPEND
+    echo "PYTHONPATH: $PYTHONPATH"
 fi
 
 "$@"
