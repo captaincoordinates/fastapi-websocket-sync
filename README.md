@@ -19,7 +19,9 @@ Assumes Python 3.9+. Older versions may be compatible but some features require 
 ## Commands
 - `make init`: installs dev dependencies and configures pre-commit formatting and linting hooks
 - `make start`: builds and starts containers. API available at http://localhost:8008
-    - does not currently support hot-reloading in combination with >1 worker process. API container should be stopped/started to acknowledge code changes
+    - does not currently support hot-reloading in combination with >1 worker process. API container should be stopped/started to acknowledge code changes (it does not need to be rebuilt)
+- `make serve`: starts the Angular development server, which includes a watch-build and supports hot-reload, so Angular changes should immediately be reflected at http://localhost:4200
+    - kill with Ctrl+C. UI requires running API container from `make start`
 - `make stop`: stops all containers
 - `make shell-api`: establishes a terminal within the API container
 - `make shell-tsgen`: establishes a terminal within the tsgenerator container
