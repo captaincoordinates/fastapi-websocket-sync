@@ -5,6 +5,6 @@
 /* Do not modify it by hand - just update the pydantic models and then re-run the script
 */
 
-export interface ServerInfo {
-  something: string;
+export interface RootResponse {
+  api_name: string;
 }

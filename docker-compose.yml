@@ -16,13 +16,7 @@ services:
             retries: 5
 
     tsgenerator:
-        build:
-            context: tsgenerator
-        environment:
-            PYTHONPATH_APPEND: /src/api
-            REQUIREMENTS_FILE: /src/api/requirements.txt
+        image: captaincoordinates/pydantic-typescript-sync
         volumes:
-            - ./:/src
-            - ./tsgenerator:/tsgen
-        entrypoint: /entrypoint.sh
-        command: python -m watch /src/api/app/models /src/web/wss/src/app/types
+            - ./api:/input
+            - ./tsoutput:/output
