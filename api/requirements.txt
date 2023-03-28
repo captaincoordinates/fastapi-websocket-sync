@@ -1,4 +1,3 @@
-# the following requirements can be installed without a build step on an Alpine base image
 uvicorn[standard]
 fastapi
 gunicorn

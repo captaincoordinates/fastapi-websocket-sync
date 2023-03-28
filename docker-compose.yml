@@ -3,7 +3,7 @@ services:
     api:
         build:
             context: ./api
-        image: captaincoordinates/fastapi_websocket_sync
+        image: captaincoordinates/fastapi-websocket-sync
         ports:
             - 8008:80
         volumes:

@@ -1,5 +1,4 @@
-TEST_CONTAINER=api_tester
-TEST_CONTAINER_IMG=$(TEST_CONTAINER)_img
+TEST_CONTAINER_IMG=api_tester_img
 
 init:
 	pip install -r api/requirements_dev.txt
