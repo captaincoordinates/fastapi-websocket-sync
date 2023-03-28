@@ -12,7 +12,7 @@ This prototype aims to support cross-process communication within a single conta
 
 This repo also demonstrates Pydantic-to-TypeScript type conversion, provided by [this repo](https://github.com/captaincoordinates/pydantic-typescript-sync), which ensures client TypeScript logic references the same types as server Python logic.
 
-Assumes Python 3.9+. Other versions may be compatible but some features require a minimum of 3.8.
+Assumes Python 3.9+. Other versions may be compatible but some features require a minimum of 3.8. Requires a Node environment for `make serve`.
 
 ## Commands
 - `make init`: installs dev dependencies and configures pre-commit formatting and linting hooks
