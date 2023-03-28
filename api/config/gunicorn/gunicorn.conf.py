@@ -1,5 +1,5 @@
 from logging import getLogger
-from os import environ, sched_getaffinity
+from os import environ, sched_getaffinity  # type: ignore
 
 logger = getLogger(__file__)
 
