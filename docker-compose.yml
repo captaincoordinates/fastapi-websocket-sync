@@ -19,4 +19,4 @@ services:
         image: captaincoordinates/pydantic-typescript-sync
         volumes:
             - ./api:/input
-            - ./tsoutput:/output
+            - ./web/wss/src/app/types:/output
