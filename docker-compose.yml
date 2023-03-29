@@ -20,3 +20,5 @@ services:
         volumes:
             - ./api:/input
             - ./web/wss/src/app/types:/output
+        environment:
+            REQUIREMENTS_FILES: discover
